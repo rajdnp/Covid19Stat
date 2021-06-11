@@ -1,3 +1,4 @@
+![WhatsApp Image 2021-06-11 at 7 02 45 PM](https://user-images.githubusercontent.com/61657297/121695682-e8aff080-cae8-11eb-8134-46f8776bb546.jpeg)
 # Covid19Stat
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.0.
