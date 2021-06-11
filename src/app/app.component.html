@@ -1,0 +1,115 @@
+<div class="container p-4">
+  <div class="container" *ngIf="!hasApiKey()">
+    <div class="input-group">
+      <span class="input-group-text"><i class="bi bi-key"></i></span>
+      <input
+        type="text"
+        #apiKeyInput
+        class="form-control shadow-sm"
+        placeholder="Drop your API key here to activate the service."
+      />
+      <button type="text" (click)="saveApiKey(apiKeyInput.value)" class="btn btn-primary">Save</button>
+    </div>
+  </div>
+  <!-- Statistics Content here -->
+  <div class="container p-2">
+    <div class="d-flex flex-row align-items-center justify-content-around">
+      <div>
+        <object
+          data="../assets/svg/coronavirus.svg"
+          style="width: 180px; height: 180px"
+        ></object>
+      </div>
+      <div>
+        <p style="font-size: 40px">{{ statisticsData.country }}</p>
+      </div>
+      <div class="mho">
+        <ngx-charts-line-chart
+          [view]="chartConfig.view"
+          [scheme]="colorScheme"
+          [legend]="chartConfig.legend"
+          [showXAxisLabel]="chartConfig.showXAxisLabel"
+          [showYAxisLabel]="chartConfig.showYAxisLabel"
+          [xAxis]="chartConfig.xAxis"
+          [yAxis]="chartConfig.yAxis"
+          [xAxisLabel]="chartConfig.xAxisLabel"
+          [yAxisLabel]="chartConfig.yAxisLabel"
+          [timeline]="chartConfig.timeline"
+          [results]="chartData"
+          (select)="onSelect($event)"
+          (activate)="onActivate($event)"
+          (deactivate)="onDeactivate($event)"          
+        >
+        </ngx-charts-line-chart>
+      </div>
+      <div class="card p-3 d-flex flex-column shadow-sm">
+        <p>Date: {{ statisticsData.date }}</p>
+        <p>Latitude: {{ statisticsData.latitude }}</p>
+        <p>Longitude: {{ statisticsData.longitude }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="row align-items-center">
+    <div class="col card data-card h-100 shadow-sm">
+      <div class="d-flex flex-column data-card-body">
+        <div class="d-flex flex-row align-items-center">
+          <div class="data-card-title">Active</div>
+          <div style="margin-left: 8px">
+            <object
+              data="../assets/svg/green-active-circle.svg"
+              style="height: 10px"
+            ></object>
+          </div>
+        </div>
+        <p class="data-card-value">{{ statisticsData.active }}</p>
+      </div>
+    </div>
+    <div class="col card data-card h-100 shadow-sm">
+      <div class="d-flex flex-column data-card-body">
+        <div class="d-flex flex-row align-items-center">
+          <div class="data-card-title">Recovered</div>
+          <div style="margin-left: 8px" >
+            <object
+            
+              data="../assets/svg/happy.svg"
+              style="height: 10px"
+            ></object>
+          </div>
+        </div>
+        <p class="data-card-value">{{ statisticsData.recovered }}</p>
+      </div>
+    </div>
+    <div class="col card data-card h-100 shadow-sm">
+      <div class="d-flex flex-column data-card-body">
+        <div class="d-flex flex-row align-items-center">
+          <div class="data-card-title">Deaths</div>
+          <div style="margin-left: 8px">
+            <object
+              data="../assets/svg/red-active-circle.svg"
+              style="height: 10px"
+            ></object>
+          </div>
+        </div>
+        <p class="data-card-value">{{ statisticsData.deaths }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="d-flex justify-content-around shadow-sm">
+      <select
+        #countrySelect
+        (change)="onCountrySelected($event)"
+        class="form-select form-select-sm shadow-sm"
+        aria-label=".form-select-sm example"
+      >
+        <option selected>Open this select menu</option>
+        <option *ngFor="let country of countries" [value]="country.name">
+          {{ country.name }}
+        </option>
+        <p></p>
+      </select>
+      <input #selectDate class="form-control" min="1996-12-19" (change)="onDateSelected($event)" max="" [value]="date" type="date" name="date" id="" />
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

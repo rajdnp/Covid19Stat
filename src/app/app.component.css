@@ -1,0 +1,27 @@
+.data-card {
+    margin: 20px;
+    
+}
+.data-card-title {
+    color: grey;
+    font-family: 'Questrial', sans-serif;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+::placeholder, option {
+    color: grey;
+    font-family: 'Questrial', sans-serif;
+    font-weight:lighter;
+}
+
+.data-card-value {
+    font-size: x-large;
+    align-self: center;
+    font-family: 'Cabin', sans-serif;
+font-family: 'Questrial', sans-serif;
+}
+
+.mho {
+    margin-top: 8%;
+}
